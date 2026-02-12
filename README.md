@@ -14,6 +14,8 @@ Sandbox execution layer for [boxlite](https://github.com/boxlite-labs/boxlite) S
 From the repo root:
 
 ```bash
+corepack enable
+corepack prepare pnpm@8.15.8 --activate
 cd boxbox && pnpm install && pnpm run build
 ```
 

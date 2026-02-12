@@ -1,6 +1,7 @@
 {
   "name": "boxbox",
   "version": "0.1.0",
+  "packageManager": "pnpm@8.15.8",
   "type": "module",
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.js",

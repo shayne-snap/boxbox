@@ -6,11 +6,20 @@ import { strict as assert } from "node:assert";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { pathToFileURL } from "node:url";
 import { createDefaultSandboxConfig } from "../../dist/esm/config/index.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "../..");
-const moduleDir = path.join(repoRoot, "node_modules", "@boxlite-ai", "boxlite");
+const moduleDir = path.join(
+  repoRoot,
+  "dist",
+  "esm",
+  "runtime",
+  "node_modules",
+  "@boxlite-ai",
+  "boxlite"
+);
 
 const moduleIndex = `
 let lastExec = null;
@@ -58,7 +67,9 @@ fs.writeFileSync(path.join(moduleDir, "index.js"), moduleIndex);
 
 try {
   const { execute } = await import("../../dist/esm/exec/index.js");
-  const { __getLastExec, __setStdout, __setStderr } = await import("@boxlite-ai/boxlite");
+  const { __getLastExec, __setStdout, __setStderr } = await import(
+    pathToFileURL(path.join(moduleDir, "index.js")).href
+  );
 
   const args = ["hello world", 'a"b', "c;rm -rf /", "$HOME", "`whoami`"];
   const result = await execute({
@@ -106,7 +117,7 @@ try {
   assert.equal(invalid.outcome, "reject");
   assert.equal(invalid.errorCode, "invalid_config");
 } finally {
-  fs.rmSync(path.join(repoRoot, "node_modules", "@boxlite-ai"), {
+  fs.rmSync(path.join(repoRoot, "dist", "esm", "runtime", "node_modules", "@boxlite-ai"), {
     recursive: true,
     force: true,
   });
