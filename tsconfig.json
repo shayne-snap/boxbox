@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "outDir": "dist/esm",
+    "rootDir": "src",
+    "strict": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true
+  },
+  "include": [
+    "src/config/**/*",
+    "src/exec/**/*",
+    "src/network-proxy/**/*",
+    "src/runtime/**/*",
+    "src/fs/**/*",
+    "src/logging/**/*",
+    "src/util/**/*",
+    "src/errors.ts",
+    "src/index.ts",
+    "src/types/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

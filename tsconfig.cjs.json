@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "outDir": "dist/cjs",
+    "declaration": false,
+    "declarationMap": false
+  },
+  "include": [
+    "src/config/**/*",
+    "src/exec/**/*",
+    "src/network-proxy/**/*",
+    "src/runtime/**/*",
+    "src/fs/**/*",
+    "src/logging/**/*",
+    "src/util/**/*",
+    "src/errors.ts",
+    "src/index.ts",
+    "src/types/**/*"
+  ]
+}
